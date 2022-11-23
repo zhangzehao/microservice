@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sise.microservice.storage.dao.StockDao">
+
+    <select id="selectByProductId" resultType="com.sise.microservice.storage.dto.StockEntity">
+        select * from t_stock where product_id = #{productId}
+    </select>
+
+    <insert id="insertOne" parameterType="com.sise.microservice.storage.dto.StockEntity"
+            useGeneratedKeys = "true" keyProperty = "id">
+        insert into t_stock(product_id, stock_num, freeze_num) values (#{productId}, #{stockNum}, #{freezeNum})
+    </insert>
+
+    <update id="updateByProductId" parameterType="com.sise.microservice.storage.dto.StockEntity">
+        update t_stock
+        set stock_num = #{stockNum},
+            freeze_num = #{freezeNum}
+        where product_id = #{productId}
+    </update>
+
+</mapper>
