@@ -4,4 +4,6 @@ public interface StockProviderService {
 
     void freezeStock(Integer productId, Integer freezeNum);
 
+    void freezeStockByTcc(Integer productId, Integer freezeNum);
+
 }

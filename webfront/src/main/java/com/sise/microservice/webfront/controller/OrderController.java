@@ -15,10 +15,21 @@ public class OrderController {
     @Autowired
     private SeataTxService seataTxService;
 
-    @PostMapping("/seata/saveOrder")
-    public String saveOrder(Integer userId, Integer productId, BigDecimal price, Integer quantity) {
+    @PostMapping("/at/saveOrder")
+    public String atModel(Integer userId, Integer productId, BigDecimal price, Integer quantity) {
         try {
             seataTxService.saveOrder(userId, productId, price, quantity);
+            return "success";
+        } catch (Exception e) {
+            log.error("发生异常:", e);
+            return "error";
+        }
+    }
+
+    @PostMapping("/tcc/saveOrder")
+    public String tccModel(Integer userId, Integer productId, BigDecimal price, Integer quantity) {
+        try {
+            seataTxService.saveOrderByTcc(userId, productId, price, quantity);
             return "success";
         } catch (Exception e) {
             log.error("发生异常:", e);

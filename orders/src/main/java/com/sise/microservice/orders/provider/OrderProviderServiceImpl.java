@@ -17,4 +17,9 @@ public class OrderProviderServiceImpl implements OrderProviderService {
     public void saveOrder(Integer userId, Integer productId, BigDecimal price, Integer quantity) {
         orderService.addOrder(userId, productId, price, quantity);
     }
+
+    @Override
+    public void saveOrderByTcc(Integer userId, Integer productId, BigDecimal price, Integer quantity) {
+        orderService.addOrderByTcc(userId, productId, price, quantity);
+    }
 }

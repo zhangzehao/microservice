@@ -20,4 +20,8 @@
         where product_id = #{productId}
     </update>
 
+    <delete id="deleteFromProductId">
+        delete from t_stock where product_id = #{productId}
+    </delete>
+
 </mapper>

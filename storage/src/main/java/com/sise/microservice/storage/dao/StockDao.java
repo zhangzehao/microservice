@@ -10,4 +10,6 @@ public interface StockDao {
     int insertOne(StockEntity entity);
 
     int updateByProductId(StockEntity entity);
+
+    int deleteFromProductId(Integer productId);
 }

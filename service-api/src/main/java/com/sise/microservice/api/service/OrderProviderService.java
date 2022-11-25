@@ -5,4 +5,6 @@ import java.math.BigDecimal;
 public interface OrderProviderService {
 
     void saveOrder(Integer userId, Integer productId, BigDecimal price, Integer quantity);
+
+    void saveOrderByTcc(Integer userId, Integer productId, BigDecimal price, Integer quantity);
 }

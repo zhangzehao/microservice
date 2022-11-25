@@ -145,20 +145,38 @@
     ) comment 'AT transaction mode undo table';
 
 
-**正常请求例子**
+**AT模式正常请求例子**
 
-    curl --location --request POST 'http://localhost:8081/seata/saveOrder' \
+    curl --location --request POST 'http://localhost:8081/at/saveOrder' \
+    --form 'userId="888888"' \
+    --form 'productId="1000"' \
+    --form 'price="2.3"' \
+    --form 'quantity="1"'
+
+**AT测试全局事务回滚例子**
+
+    curl --location --request POST 'http://localhost:8081/at/saveOrder' \
+    --form 'userId="888888"' \
+    --form 'productId="1000"' \
+    --form 'price="2.3"' \
+    --form 'quantity="999"'
+    
+    
+**TCC模式正常请求例子**
+
+    curl --location --request POST 'http://localhost:8081/tcc/saveOrder' \
+    --form 'userId="888888"' \
+    --form 'productId="1000"' \
+    --form 'price="2.3"' \
+    --form 'quantity="1"'
+
+**TCC测试全局事务回滚例子**
+
+    curl --location --request POST 'http://localhost:8081/tcc/saveOrder' \
     --form 'userId="888888"' \
     --form 'productId="1000"' \
     --form 'price="1.23"' \
     --form 'quantity="2"'
 
-**测试全局事务回滚例子**
-
-    curl --location --request POST 'http://localhost:8081/seata/saveOrder' \
-    --form 'userId="888888"' \
-    --form 'productId="1000"' \
-    --form 'price="1.23"' \
-    --form 'quantity="999"'
 
 

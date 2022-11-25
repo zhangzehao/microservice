@@ -44,4 +44,20 @@ public class StockService {
         stockDao.updateByProductId(stockEntity);
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    public void rollbackFreeze(Integer productId, Integer freezeNum) {
+        Assert.isTrue(productId != null && productId > 0, "产品id参数错误");
+        Assert.isTrue(freezeNum > 0, "冻结库存参数错误");
+        StockEntity stockEntity = stockDao.selectByProductId(productId);
+        if (stockEntity == null) {
+            return;
+        }
+
+        if (stockEntity.getFreezeNum().intValue() >= freezeNum) {
+            stockEntity.setFreezeNum(stockEntity.getFreezeNum() - freezeNum);
+            stockEntity.setStockNum(stockEntity.getStockNum() + freezeNum);
+            stockDao.updateByProductId(stockEntity);
+        }
+    }
+
 }
